@@ -6,8 +6,7 @@ from tensorflow.keras.preprocessing import image
 
 app = Flask(__name__)  # Create Flask app
 app.config['TEMPLATES_AUTO_RELOAD'] = True
-model = load_model('C:/Users/deepa/Downloads/Heart_Disease_Prediction_Using_ECG_Images-main/Heart_Disease_Prediction_Using_ECG_Images-main/flask/ECG.h5')
-
+model = load_model('/app/flask/ECG.h5')
 heart_conditions = {
     "Normal": {
         "description": "No abnormalities detected in heart function.",
