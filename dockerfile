@@ -17,8 +17,13 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY . .
 
 # 6. Expose the Flask port
+# … your existing Dockerfile up to COPY . .
+
+# Expose the port (optional)
 EXPOSE 5000
 
-# 7. Run the Flask app
-#    (Adjust the path if you ever rename app_flask.py.)
-CMD ["python", "flask/app_flask.py"]
+# Replace the CMD with this:
+# - Uses the PORT environment variable Render will set
+ENV FLASK_APP=flask/app_flask.py
+CMD ["flask", "run", "--host=0.0.0.0", "--port", "${PORT}"]
+
