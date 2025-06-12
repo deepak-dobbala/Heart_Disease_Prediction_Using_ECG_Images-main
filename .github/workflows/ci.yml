@@ -25,12 +25,12 @@ jobs:
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
+          
+      - run: echo "DOCKER USER: ${{ secrets.DOCKERHUB_USERNAME }}"
 
       - name: Build & push Docker image
         uses: docker/build-push-action@v5
         with:
           context: .
           push: true
-          tags: |
-            ${{ secrets.DOCKERHUB_USERNAME }}/heart-diease-pred-app:1.0
-            ${{ secrets.DOCKERHUB_USERNAME }}/heart-diease-pred-app:latest
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/heart-diease-pred-app:1.0
