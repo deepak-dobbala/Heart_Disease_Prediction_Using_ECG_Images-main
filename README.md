@@ -1,189 +1,80 @@
+## ECG Image-Based Heartbeat Classification for Arrhythmia Detection
 
-# ECG- Image Based Heartbeat Classification For Arrhythmia Detection
-ECG- Image based Heartbeat classification for Arrhythmia Detection
+**Live Demo:** [heart-disease-app.onrender.com](https://heart-disease-app.onrender.com)
+**GitHub Repository:** [github.com/your-username/heart-disease-prediction-ecg](https://github.com/your-username/heart-disease-prediction-ecg)
 
-## Introduction:
+---
 
-### Overview:
-According to the World Health Organization (WHO), cardiovascular diseases (CVDs) are the number one cause of death today. Over 17.7 million people died from CVDs in the year 2017 all over the world which is about 31% of all deaths, and over 75% of these deaths occur in low and middle-income countries. Arrhythmia is a representative type of CVD that refers to any irregular change from the normal heart rhythms. There are several types of arrhythmia including atrial fibrillation, premature contraction, ventricular fibrillation, and tachycardia. Although a single arrhythmia heartbeat may not have a serious impact on life, continuous arrhythmia beats can result in fatal circumstances. In this project, we build an effective electrocardiogram (ECG) arrhythmia classification method using a convolution al neural network (CNN), in which we classify ECG into seven categories, one being normal and the other six being different types of arrhythmia using deep two-dimensional CNN with grayscale ECG images. We are creating a web application where the user selects the image which is to be classified. The image is fed into the model that is trained and the cited class will be displayed on the webpage.
+### Introduction
 
-### Purpose:
-In the past few decades, Deep Learning has proved to be a compelling tool because of its ability to handle large amounts of data. The interest to use hidden layers has surpassed traditional techniques, especially in pattern recognition. One of the most popular deep neural networks is Convolution al Neural Networks.
+Cardiovascular diseases (CVDs) are the leading cause of death worldwide, accounting for over 17.7 million deaths (31% of all deaths) in 2017, with more than 75% occurring in low- and middle-income countries. Arrhythmia—irregular heart rhythm—is a significant CVD subtype that can range from benign skipped beats to life-threatening ventricular fibrillation.
 
-In deep learning, a convolution al neural network (CNN/ConvNet) is a class of deep neural networks, most commonly applied to analyze visual imagery. Now when we think of a neural network we think about matrix multiplications but that is not the case with ConvNet. It uses a special technique called Convolution. Now in mathematics convolution is a mathematical operation on two functions that produces a third function that expresses how the shape of one is modified by the other.
+In this project, we developed a web application that classifies ECG images into seven categories (normal and six arrhythmia types) using a deep Convolutional Neural Network (CNN). Users can upload an ECG image via the Flask-based interface, and receive an instant prediction and detailed information about the diagnosed condition.
 
+---
 
-## Literature Survey:
- ### Existing Problem:
-Cardiovascular diseases (CVDs) are the number one cause of death today. Over 17.7 million people died from CVDs in the year 2017 all over the world which is about 31% of all deaths, and over 75% of these deaths occur in low and middle-income countries. Arrhythmia is a representative type of CVD that refers to any irregular change from the normal heart rhythms. There are several types of arrhythmia including atrial fibrillation, premature contraction, ventricular fibrillation, and tachycardia.
+### Key Features
 
+* **High Accuracy:** Achieves \~96% classification accuracy across seven categories.
+* **Real-Time Inference:** Users upload an image and get instant predictions.
+* **Detailed Insights:** For each detected condition, the app provides descriptions, symptoms, risk factors, and lifestyle advice.
+* **Containerized Deployment:** Dockerized and deployed on Render for seamless scaling.
 
-###  Proposed Solution:
-An "ambulatory electrocardiogram" or an ECG) about the size of a postcard or digital camera that the patient will be using for 1 to 2 days, or up to 2 weeks. The test measures the movement of electrical signals or waves through the heart. These signals tell the heart to contract (squeeze) and pump blood. The patient will have electrodes taped to your skin. It's painless, although some people have mild skin irritation from the tape used to attach the electrodes to the chest.They can do everything but shower or bathe while wearing the electrodes. After the test period, patient will go back to see your doctor. They will be downloading the information.
+---
 
+### Architecture
 
-## Theoretical Experience:
-We will prepare the project by following the below steps:
-We will be working with Sequential type of modeling
-We will be working with Keras capabilities
-We will be working with image processing techniques
-We will  build a web application using the Flask framework.
+1. **Data Preprocessing:** Grayscale ECG images are augmented using Keras's `ImageDataGenerator` (rotations, shifts, flips, zooms).
+2. **Model:** A sequential 2D CNN with multiple convolutional, pooling, dropout, and dense layers, compiled with the Adam optimizer and categorical cross-entropy loss.
+3. **Backend:** Flask serves the web UI and handles file uploads, model loading, and prediction.
+4. **Containerization:** Docker builds the app into an image, exposing port 5000.
+5. **Deployment:** Render pulls the Docker Hub image and hosts the service at a public URL.
 
-## HARDWARE & SOFTWARE Desgining:
+---
 
-### Hardware Components used:
-Since we are using the IBM cloud as a platform to execute this project we don’t need any hardware components other than our system.
-### Software Components Used:
-* We will be using Anaconda Navigator which is installed in our system 
-* Anaconda Navigator is a free and open-source distribution of the Python and R programming languages for data science and machine learning related applications. It can be installed on Windows, Linux, and macOS.Conda is an open-source, cross-platform,  package management system. Anaconda comes with so very nice tools like 
-JupyterLab, Jupyter Notebook,QtConsole, Spyder, Glueviz, Orange, Rstudio, Visual Studio Code. 
-* For this project, we will be using Jupiter notebook and spyder
+### Getting Started
 
+#### Prerequisites
 
+* Docker
+* Docker Hub account (image: `deepakdobbal28/heart-disease-pred-app:1.0`)
 
-## Experimental Investigations:
+#### Local Setup
 
-We are deploying 4 types of CNN layers in a sequential manner , starting from :
- * **Convolutional layer 2D**:A 2-D convolutional layer applies sliding convolutional filters to 2-D input. The layer convolves the input by moving the filters along the input vertically and horizontally and computing the dot product of the weights and the input, and then adding a bias term.
- * **Pooling Layer** :Pooling layers are used to reduce the dimensions of the feature maps. Thus, it reduces the number of parameters to learn and the amount of computation performed in the network. The pooling layer summarises the features present in a region of the feature map generated by a convolution layer.
- * **Fully-Connected layer** :After extracting features from multiple convolution layers and pooling layers, the fully-connected layer is used to expand the connection of all features. Finally, the SoftMax layer makes a logistic regression classification. Fully-connected layer transfers the weighted sum of the output of the previous layer to the activation function.
- * **Dropout Layer** :There is usually a dropout layer before the fully-connected layer. The dropout layer will temporarily disconnect some neurons from the network according to the certain probability during the training of the convolution neural network, which reduces the joint adaptability between neuron nodes, reduces overfitting, and enhances the generalization ability of the network.
-## Dataset Collection: 
-The dataset contains six classes:
- * Left Bundle Branch Block 
- * Normal
- *  Premature Atrial Contraction
-  *  Premature Ventricular Contractions 
-   * Right Bundle Branch Block
-   * Ventricular Fibrillation
+1. **Clone the repo**
 
-## Image Preprocessing:
-Image Pre-processing includes the following main tasks
-**Import ImageDataGenerator Library:**
-Image data augmentation is a technique that can be used to artificially expand the size of a training dataset by creating modified versions of images in the dataset.
+   ```bash
+   git clone https://github.com/your-username/heart-disease-prediction-ecg.git
+   cd heart-disease-prediction-ecg
+   ```
+2. **Build the Docker image**
 
-The Keras deep learning neural network library provides the capability to fit models using image data augmentation via the ImageDataGenerator class.
+   ```bash
+   docker build -t heart-disease-app:local .
+   ```
+3. **Run the container**
 
-**Configure ImageDataGenerator Class:**
-There are five main types of data augmentation techniques for image data; specifically:
+   ```bash
+   docker run -p 5000:5000 heart-disease-app:local
+   ```
+4. **Visit** `http://localhost:5000` in your browser.
 
-Image shifts via the width_shift_range and height_shift_range arguments.
-Image flips via the horizontal_flip and vertical_flip arguments.
-Image rotates  via the rotation_range argument
-Image brightness via the brightness_range argument.
-Image zooms via the zoom_range argument.
+#### Using the Live Demo
 
-An instance of the ImageDataGenerator class can be constructed for train and test. 
+* Navigate to the [live app](https://heart-disease-app.onrender.com).
+* Upload an ECG image on the **Predict** page.
+* View diagnosis and condition details.
 
+---
 
+### Future Work
 
-**Applying ImageDataGenerator functionality to the trainset and test set:**
-We will apply ImageDataGenerator functionality to Trainset and Testset 
-This function will return batches of images from the subdirectories Left Bundle Branch Block, Normal, Premature Atrial Contraction, Premature Ventricular Contractions, Right Bundle Branch Block and Ventricular Fibrillation, together with labels 0 to 5{'Left Bundle Branch Block': 0, 'Normal': 1, 'Premature Atrial Contraction': 2, 'Premature Ventricular Contractions': 3, 'Right Bundle Branch Block': 4, 'Ventricular Fibrillation': 5}
+* Integrate hyperparameter optimization for improved accuracy.
+* Expand to detect additional cardiac conditions and multi-lead ECG signals.
+* Implement user authentication and result history tracking.
 
+---
 
+### License
 
-We can see that for training there are 15341 images belonging to 6 classes and for testing there are 6825 images belonging to 6 classes.
-
-## Model Building
-We are ready with the augmented and pre-processed image data,we will begin our build our model by following the below steps:
-Import the model building Libraries:
-
-**Initializing the model:**
-Keras has 2 ways to define a neural network: 
-Sequential
-Function API 
-The Sequential class is used to define linear initializations of network layers which then, collectively, constitute a model. In our example below, we will use the Sequential constructor to create a model, which will then have layers added to it using the add () method.
-Now, will initialize our model.
-Adding CNN Layers:
-We are adding a convolution layer with an activation function as “relu” and with a small filter size (3,3) and a number of filters as (32) followed by a max-pooling layer.
-
-The Max pool layer is used to downsample the input.
-
-The flatten layer flattens the input. 
-
-**Adding Hidden Layers:**
-Dense layer is deeply connected neural network layer. It is most common and frequently used layer.
-
-**Adding Output Layer:**
-
-Understanding the model is very important phase to properly use it for training and prediction purposes. Keras provides a simple method, summary to get the full information about the model and its layers.
-
-
-**Configure the Learning Process:**
-The compilation is the final step in creating a model. Once the compilation is done, we can move on to the training phase. The loss function is used to find error or deviation in the learning process. Keras requires loss function during the model compilation process. 
-Optimization is an important process that optimizes the input weights by comparing the prediction and the loss function. Here we are using adam optimizer
-Metrics is used to evaluate the performance of your model. It is similar to loss function, but not used in the training process.
-
-
-**Training the model:**
-We will train our model with our image dataset. fit_generator functions used to train a deep learning neural network.
-
-**Saving the model:**
-The model is saved with .h5 extension as follows 
-An H5 file is a data file saved in the Hierarchical Data Format (HDF). It contains multidimensional arrays of scientific data.
-
-**Testing the model:**
-Load necessary libraries and load the saved model using load_model
-Taking an image as input and checking the results 
-Note: The target size should for the image that is should be the same as the target size that you have used for training.
-
-## Application Building:
-In this section, we will be building a web application that is integrated into the model we built. A UI is provided for the uses where he has uploaded an image. The uploaded image is given to the saved model and prediction is showcased on the UI.
-This section has the following tasks
-Building HTML Pages:
-We use HTML to create the front end part of the web page. 
-Here, we created 4 html pages- home.html, predict_base.html, predict.html, information.html. 
-
-
-home.html displays the home page.
-
-
-information.html displays all important details to be known about ECG. 
-
-
-predict-base.html and predict.html accept input from the user and predicts the values.
-
-
-
-
-
-**Building server-side script:**
-We will build the flask file ‘app.py’ which is a web framework written in python for server-side scripting. 
-The app starts running when the “__name__” constructor is called in main.
-render_template is used to return HTML file.
-“GET” method is used to take input from the user.
-“POST” method is used to display the output to the user. 
-
-
-**Running The App:**
-
-
-Navigate to the localhost (http://127.0.0.1:5000/)where you can view your web page.
-
-
-Advantages & Disadvantages:
- **Advantages:**
-The proposed model predicts Arrhythmia in images with a high accuracy rate of  nearly 96%
-The early detection of Arrhythmia gives better understanding of disease causes, initiates therapeutic interventions and enables developing appropriate treatments.
- **Disadvantages:**
-Not useful for identifying the different stages of Arrhythmia disease.
-Not useful in monitoring motor symptoms
-
-
-
-## Applications :
-It is useful for identifying the arrhythmia disease at an early stage.
-It is useful in detecting  cardiovascular disorders
-.
-## Conclusion:
-Cardiovascular disease is a major health problem in today's world. The early diagnosis of cardiac arrhythmia highly relies on the ECG. 
-Unfortunately, the expert level of medical resources is rare, visually identify the ECG signal is challenging and time-consuming. 
-The advantages of the proposed CNN network have been put to evidence. 
-It is endowed with an ability to effectively process the non-filtered dataset with its potential anti-noise features. Besides that, ten-fold cross-validation is implemented in this work to further demonstrate the robustness of the network.
-
-## Future Scope:
-For future work, it would be interesting to explore the use of optimization techniques to find a feasible design and solution. The limitation of our study is that we have yet to apply any optimization techniques to optimize the model parameters and we believe that with the implementation of the optimization, it will be able to further elevate the performance of the proposed solution to the next level.
-
-    
-
+This project is released under the MIT License.
